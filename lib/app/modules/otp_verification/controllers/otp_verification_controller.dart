@@ -3,9 +3,7 @@ import 'package:get/get.dart';
 import 'package:ridar/app/routes/app_pages.dart';
 import 'package:sms_autofill/sms_autofill.dart';
 
-class OtpVerificationController extends GetxController {
-  //TODO: Implement OtpVerificationController
-
+class OtpVerificationController extends GetxController with CodeAutoFill {
   var otp = List.filled(4, '');
   late List<FocusNode> focusNodes;
   onOtpChanged(String value, int index) {
@@ -19,10 +17,8 @@ class OtpVerificationController extends GetxController {
   void onInit() {
     super.onInit();
     focusNodes = List.generate(4, (index) => FocusNode());
-    _listenForOtp();
+    listenForCode(smsCodeRegexPattern: '\\d{4,6}');
   }
-
-  void _listenForOtp() async {}
 
   void verifyOtp() {
     final enteredOtp = otp.join();
@@ -47,5 +43,15 @@ class OtpVerificationController extends GetxController {
     }
     SmsAutoFill().unregisterListener();
     super.onClose();
+  }
+
+  @override
+  void codeUpdated() {
+    if (code != null) {
+      for (int i = 0; i < code!.length && i < 4; i++) {
+        otp[i] = code![i];
+      }
+      verifyOtp();
+    }
   }
 }

@@ -70,6 +70,7 @@ class LoginView extends GetView<LoginController> {
                       spacing: 24,
                       children: [
                         TextFormField(
+                          controller: controller.plateNumber,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
@@ -79,8 +80,12 @@ class LoginView extends GetView<LoginController> {
                         ),
                         Row(
                           children: [
-                            Checkbox.adaptive(
-                                value: false, onChanged: (value) => value),
+                            Obx(
+                              () => Checkbox.adaptive(
+                                  value: controller.rememberMe.value,
+                                  onChanged: (value) =>
+                                      controller.rememberMe(value!)),
+                            ),
                             Text(
                               'Remember me',
                               style: TextStyle(
@@ -98,9 +103,7 @@ class LoginView extends GetView<LoginController> {
                     height: 29,
                   ),
                   InkWell(
-                    onTap: () {
-                      Get.toNamed(Routes.BIOMETRIC_VERIFICATION_GETSTART);
-                    },
+                    onTap: controller.login,
                     child: Container(
                       width: 216,
                       padding:

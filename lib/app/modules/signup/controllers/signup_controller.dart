@@ -1,9 +1,12 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ridar/app/routes/app_pages.dart';
 
 class SignupController extends GetxController {
-  //TODO: Implement SignupController
+  TextEditingController phoneNumber = TextEditingController();
+  TextEditingController plateNumber = TextEditingController();
+  final rememberMe = false.obs;
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -19,5 +22,12 @@ class SignupController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+  signup() {
+    if (plateNumber.text.isNotEmpty && plateNumber.text.isNotEmpty) {
+      Get.toNamed(Routes.OTP_VERIFICATION);
+    } else {
+      Get.snackbar(
+          'Error', 'Please enter a valid phone number and plate number');
+    }
+  }
 }

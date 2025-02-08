@@ -70,20 +70,24 @@ class SignupView extends GetView<SignupController> {
                       spacing: 24,
                       children: [
                         TextFormField(
+                          controller: controller.phoneNumber,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
                             hintText: 'Phone number',
                           ),
+                          keyboardType: TextInputType.phone,
                         ),
                         TextFormField(
+                          controller: controller.plateNumber,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
                             hintText: 'Plate number',
                           ),
+                          keyboardType: TextInputType.number,
                         ),
                       ],
                     ),
@@ -92,9 +96,7 @@ class SignupView extends GetView<SignupController> {
                     height: 29,
                   ),
                   InkWell(
-                    onTap: () {
-                      Get.toNamed(Routes.OTP_VERIFICATION);
-                    },
+                    onTap: controller.signup,
                     child: Container(
                       width: 216,
                       padding:

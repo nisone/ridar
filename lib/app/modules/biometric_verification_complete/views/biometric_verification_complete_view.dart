@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 import 'package:get/get.dart';
+import 'package:ridar/app/routes/app_pages.dart';
 
 import '../controllers/biometric_verification_complete_controller.dart';
 
@@ -188,7 +189,7 @@ class BiometricVerificationCompleteView
               ),
               onPressed: () {
                 hideOverlay();
-                Get.back();
+                Get.offAllNamed(Routes.HOME);
               },
               icon: Icon(
                 Icons.arrow_back,

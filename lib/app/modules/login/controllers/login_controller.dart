@@ -1,9 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ridar/app/routes/app_pages.dart';
 
 class LoginController extends GetxController {
-  //TODO: Implement LoginController
+  TextEditingController plateNumber = TextEditingController();
+  final rememberMe = false.obs;
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -19,5 +21,11 @@ class LoginController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+  login() {
+    if (plateNumber.text.isNotEmpty) {
+      Get.toNamed(Routes.BIOMETRIC_VERIFICATION_GETSTART);
+    } else {
+      Get.snackbar('Error', 'Please enter a valid plate number');
+    }
+  }
 }
