@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 import 'package:get/get.dart';
-import 'package:ridar/app/routes/app_pages.dart';
 
 import '../controllers/biometric_verification_getstart_controller.dart';
 
@@ -53,25 +52,36 @@ class BiometricVerificationGetstartView
             SizedBox(
               height: 85,
             ),
-            InkWell(
-              onTap: () {
-                Get.toNamed(Routes.BIOMETRIC_VERIFICATION);
-              },
-              child: Container(
-                constraints: BoxConstraints(minWidth: 216, maxWidth: 250),
-                padding: EdgeInsets.symmetric(horizontal: 52, vertical: 10.93),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Get.theme.colorScheme.primary,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Text(
-                  'Get Started',
-                  style: TextStyle(
-                    color: Get.theme.colorScheme.onPrimary,
-                    fontSize: 17,
-                    fontWeight: FontWeight.w600,
+            Obx(
+              () => InkWell(
+                onTap:
+                    controller.isLoading.value ? null : controller.captureImage,
+                child: Container(
+                  constraints: BoxConstraints(minWidth: 216, maxWidth: 250),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 52, vertical: 10.93),
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: Get.theme.colorScheme.primary,
+                    borderRadius: BorderRadius.circular(10),
                   ),
+                  child: controller.isLoading.value
+                      ? SizedBox.square(
+                          dimension: 24,
+                          child: CircularProgressIndicator.adaptive(
+                            backgroundColor: Get.theme.colorScheme.secondary,
+                            valueColor: AlwaysStoppedAnimation<Color?>(
+                                Get.theme.colorScheme.onSecondary),
+                          ),
+                        )
+                      : Text(
+                          'Get Started',
+                          style: TextStyle(
+                            color: Get.theme.colorScheme.onPrimary,
+                            fontSize: 17,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                 ),
               ),
             ),

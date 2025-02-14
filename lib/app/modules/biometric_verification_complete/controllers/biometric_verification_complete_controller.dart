@@ -1,12 +1,12 @@
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 class BiometricVerificationCompleteController extends GetxController {
-  //TODO: Implement BiometricVerificationCompleteController
-
-  final count = 0.obs;
+  Uint8List? capturedImage;
   @override
   void onInit() {
     super.onInit();
+    capturedImage = Get.arguments;
   }
 
   @override
@@ -18,6 +18,4 @@ class BiometricVerificationCompleteController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
 }

@@ -46,7 +46,8 @@ class BiometricVerificationCompleteView
       showOverlay(context);
     });
     return Scaffold(
-      backgroundColor: Color.fromRGBO(206, 147, 216, 0.25),
+      backgroundColor: Get.theme.colorScheme
+          .tertiaryContainer, // Color.fromRGBO(206, 147, 216, 0.25),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,7 +78,7 @@ class BiometricVerificationCompleteView
                   ),
                 ),
                 onPressed: () {
-                  Get.back();
+                  // Get.back();
                 },
                 icon: Icon(
                   Icons.arrow_back,
@@ -89,7 +90,7 @@ class BiometricVerificationCompleteView
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 35),
               child: Text(
-                'Face Recognition',
+                '',
                 style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 25,
@@ -108,46 +109,50 @@ class BiometricVerificationCompleteView
                 fit: StackFit.expand,
                 clipBehavior: Clip.none,
                 children: [
-                  Image.asset(
-                    'assets/images/person1.png',
+                  // Image.asset(
+                  //   'assets/images/person1.png',
+                  //   fit: BoxFit.cover,
+                  // ),
+                  // Align(
+                  //   alignment: Alignment.center,
+                  //   child: Image.asset(
+                  //     'assets/images/facial_feature_recognized.png',
+                  //     fit: BoxFit.contain,
+                  //   )
+                  //       .animate(
+                  //           onPlay: (controller) =>
+                  //               controller.repeat(reverse: true))
+                  //       .fadeIn(curve: Curves.easeIn, duration: 940.ms),
+                  // ),
+                  // Align(
+                  //   alignment: Alignment.bottomCenter,
+                  //   child: Padding(
+                  //     padding: const EdgeInsets.symmetric(
+                  //         vertical: 89, horizontal: 20),
+                  //     child: Column(
+                  //       mainAxisSize: MainAxisSize.min,
+                  //       spacing: 17,
+                  //       children: [
+                  //         Text(
+                  //           '100% recognized',
+                  //           style: TextStyle(
+                  //               fontWeight: FontWeight.w500,
+                  //               fontSize: 17,
+                  //               color: Colors.white),
+                  //         ),
+                  //         LinearProgressIndicator(
+                  //           value: 1.0,
+                  //           minHeight: 8,
+                  //           borderRadius: BorderRadius.circular(10),
+                  //         ),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
+                  Image.memory(
+                    controller.capturedImage!,
                     fit: BoxFit.cover,
                   ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Image.asset(
-                      'assets/images/facial_feature_recognized.png',
-                      fit: BoxFit.contain,
-                    )
-                        .animate(
-                            onPlay: (controller) =>
-                                controller.repeat(reverse: true))
-                        .fadeIn(curve: Curves.easeIn, duration: 940.ms),
-                  ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 89, horizontal: 20),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        spacing: 17,
-                        children: [
-                          Text(
-                            '100% recognized',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 17,
-                                color: Colors.white),
-                          ),
-                          LinearProgressIndicator(
-                            value: 1.0,
-                            minHeight: 8,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
                 ],
               ),
             ),

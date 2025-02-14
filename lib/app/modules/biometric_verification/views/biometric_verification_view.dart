@@ -2,30 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 import 'package:get/get.dart';
-import 'package:ridar/app/routes/app_pages.dart';
 
 import '../controllers/biometric_verification_controller.dart';
 
 class BiometricVerificationView
     extends GetView<BiometricVerificationController> {
-  BiometricVerificationView({super.key});
-
-  final RxDouble progress = 0.0.obs;
-
-  startVerification() async {
-    while (progress.value < 1.0) {
-      await Future.delayed(Duration(milliseconds: 100));
-      progress.value += 0.01;
-    }
-
-    Get.offNamed(Routes.BIOMETRIC_VERIFICATION_COMPLETE);
-  }
+  const BiometricVerificationView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    startVerification();
     return Scaffold(
-      backgroundColor: Color.fromRGBO(206, 147, 216, 0.25),
+      backgroundColor: Get.theme.colorScheme.tertiaryContainer,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,8 +70,12 @@ class BiometricVerificationView
               child: Stack(
                 fit: StackFit.expand,
                 children: [
-                  Image.asset(
-                    'assets/images/person1.png',
+                  // Image.asset(
+                  //   'assets/images/person1.png',
+                  //   fit: BoxFit.cover,
+                  // ),
+                  Image.memory(
+                    controller.capturedImage!,
                     fit: BoxFit.cover,
                   ),
                   Align(
@@ -109,7 +100,7 @@ class BiometricVerificationView
                         children: [
                           Obx(
                             () => Text(
-                              '${(progress.value * 100).toInt()}% recognized',
+                              '${(controller.progress.value * 100).toInt()}% recognized',
                               style: TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 17,
@@ -118,7 +109,7 @@ class BiometricVerificationView
                           ),
                           Obx(
                             () => LinearProgressIndicator(
-                              value: progress.value,
+                              value: controller.progress.value,
                               minHeight: 8,
                               borderRadius: BorderRadius.circular(10),
                             ),

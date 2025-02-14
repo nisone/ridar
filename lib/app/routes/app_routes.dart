@@ -13,6 +13,10 @@ abstract class Routes {
       _Paths.BIOMETRIC_VERIFICATION_COMPLETE;
   static const LOGIN = _Paths.LOGIN;
   static const SIGNUP = _Paths.SIGNUP;
+  static const CAMPAIGNS = _Paths.CAMPAIGNS;
+  static const PAYMENTS = _Paths.PAYMENTS;
+  static const SETTINGS = _Paths.SETTINGS;
+  static const PROFILE = _Paths.PROFILE;
 }
 
 abstract class _Paths {
@@ -27,4 +31,8 @@ abstract class _Paths {
       '/biometric-verification-complete';
   static const LOGIN = '/login';
   static const SIGNUP = '/signup';
+  static const CAMPAIGNS = '/campaigns';
+  static const PAYMENTS = '/payments';
+  static const SETTINGS = '/settings';
+  static const PROFILE = '/profile';
 }

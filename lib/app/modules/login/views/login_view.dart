@@ -51,102 +51,120 @@ class LoginView extends GetView<LoginController> {
                   topRight: Radius.circular(50),
                 ),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: 65,
-                  ),
-                  Text(
-                    'Login',
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 25),
-                  ),
-                  SizedBox(
-                    height: 60,
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(horizontal: 25),
-                    child: Column(
-                      spacing: 24,
-                      children: [
-                        TextFormField(
-                          controller: controller.plateNumber,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            hintText: 'Plate number',
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Obx(
-                              () => Checkbox.adaptive(
-                                  value: controller.rememberMe.value,
-                                  onChanged: (value) =>
-                                      controller.rememberMe(value!)),
-                            ),
-                            Text(
-                              'Remember me',
-                              style: TextStyle(
-                                color: Get.theme.colorScheme.primary,
-                                fontSize: 17,
-                                fontWeight: FontWeight.w400,
+              child: SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 65,
+                    ),
+                    Text(
+                      'Login',
+                      style:
+                          TextStyle(fontWeight: FontWeight.w600, fontSize: 25),
+                    ),
+                    SizedBox(
+                      height: 60,
+                    ),
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 25),
+                      child: Column(
+                        spacing: 24,
+                        children: [
+                          TextFormField(
+                            controller: controller.plateNumber,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
                               ),
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 29,
-                  ),
-                  InkWell(
-                    onTap: controller.login,
-                    child: Container(
-                      width: 216,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 74, vertical: 10.93),
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: Get.theme.colorScheme.primary,
-                        borderRadius: BorderRadius.circular(10),
+                              hintText: 'Plate number',
+                            ),
+                          ),
+                          Row(
+                            children: [
+                              Obx(
+                                () => Checkbox.adaptive(
+                                    value: controller.rememberMe.value,
+                                    onChanged: (value) =>
+                                        controller.rememberMe(value!)),
+                              ),
+                              Text(
+                                'Remember me',
+                                style: TextStyle(
+                                  color: Get.theme.colorScheme.primary,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              )
+                            ],
+                          )
+                        ],
                       ),
-                      child: Text(
-                        'Login',
-                        style: TextStyle(
-                          color: Get.theme.colorScheme.onPrimary,
-                          fontSize: 17,
-                          fontWeight: FontWeight.w600,
+                    ),
+                    SizedBox(
+                      height: 29,
+                    ),
+                    Obx(
+                      () => InkWell(
+                        onTap: controller.isLoading.value
+                            ? null
+                            : controller.login,
+                        child: Container(
+                          width: 216,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 74, vertical: 10.93),
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: Get.theme.colorScheme.primary,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: controller.isLoading.value
+                              ? SizedBox.square(
+                                  dimension: 24,
+                                  child: CircularProgressIndicator.adaptive(
+                                    backgroundColor:
+                                        Get.theme.colorScheme.secondary,
+                                    valueColor: AlwaysStoppedAnimation<Color?>(
+                                        Get.theme.colorScheme.onSecondary),
+                                  ),
+                                )
+                              : Text(
+                                  'Login',
+                                  style: TextStyle(
+                                    color: Get.theme.colorScheme.onPrimary,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 29,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Don\'t have an account?',
-                        style: TextStyle(
-                            fontSize: 17, fontWeight: FontWeight.w400),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Get.toNamed(Routes.SIGNUP);
-                        },
-                        child: Text(
-                          'Sign Up',
+                    SizedBox(
+                      height: 29,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Don\'t have an account?',
                           style: TextStyle(
                               fontSize: 17, fontWeight: FontWeight.w400),
                         ),
-                      )
-                    ],
-                  )
-                ],
+                        TextButton(
+                          onPressed: () {
+                            Get.toNamed(Routes.SIGNUP);
+                          },
+                          child: Text(
+                            'Sign Up',
+                            style: TextStyle(
+                                fontSize: 17, fontWeight: FontWeight.w400),
+                          ),
+                        )
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
           ),

@@ -6,6 +6,8 @@ import '../modules/biometric_verification_complete/bindings/biometric_verificati
 import '../modules/biometric_verification_complete/views/biometric_verification_complete_view.dart';
 import '../modules/biometric_verification_getstart/bindings/biometric_verification_getstart_binding.dart';
 import '../modules/biometric_verification_getstart/views/biometric_verification_getstart_view.dart';
+import '../modules/campaigns/bindings/campaigns_binding.dart';
+import '../modules/campaigns/views/campaigns_view.dart';
 import '../modules/help/bindings/help_binding.dart';
 import '../modules/help/views/help_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -14,6 +16,12 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/otp_verification/bindings/otp_verification_binding.dart';
 import '../modules/otp_verification/views/otp_verification_view.dart';
+import '../modules/payments/bindings/payments_binding.dart';
+import '../modules/payments/views/payments_view.dart';
+import '../modules/profile/bindings/profile_binding.dart';
+import '../modules/profile/views/profile_view.dart';
+import '../modules/settings/bindings/settings_binding.dart';
+import '../modules/settings/views/settings_view.dart';
 import '../modules/signup/bindings/signup_binding.dart';
 import '../modules/signup/views/signup_view.dart';
 
@@ -64,6 +72,26 @@ class AppPages {
       name: _Paths.SIGNUP,
       page: () => const SignupView(),
       binding: SignupBinding(),
+    ),
+    GetPage(
+      name: _Paths.CAMPAIGNS,
+      page: () => const CampaignsView(),
+      binding: CampaignsBinding(),
+    ),
+    GetPage(
+      name: _Paths.PAYMENTS,
+      page: () => const PaymentsView(),
+      binding: PaymentsBinding(),
+    ),
+    GetPage(
+      name: _Paths.SETTINGS,
+      page: () => SettingsView(),
+      binding: SettingsBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILE,
+      page: () => const ProfileView(),
+      binding: ProfileBinding(),
     ),
   ];
 }
